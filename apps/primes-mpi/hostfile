@@ -1,0 +1,10 @@
+# MPI Hostfile for local testing
+# Each line: hostname slots=N
+#
+# For Docker cluster:
+#   mpi-master slots=1
+#   mpi-worker-1 slots=1
+#   mpi-worker-2 slots=1
+#
+# For local testing:
+localhost slots=4

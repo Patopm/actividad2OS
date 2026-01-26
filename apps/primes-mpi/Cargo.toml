@@ -1,0 +1,16 @@
+[package]
+name = "primes-mpi"
+version.workspace = true
+edition.workspace = true
+
+[dependencies]
+clap.workspace = true
+
+# Note: The 'mpi' crate requires OpenMPI to be installed
+# For systems without MPI, we provide a fallback TCP implementation
+[target.'cfg(feature = "mpi")'.dependencies]
+mpi = { version = "0.8", optional = true }
+
+[features]
+default = []
+mpi = ["dep:mpi"]

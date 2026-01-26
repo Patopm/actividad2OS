@@ -1,0 +1,2 @@
+# This directory is shared between all MPI nodes
+# Used for input/output files

@@ -1,0 +1,37 @@
+# Rust
+/target/
+**/*.rs.bk
+Cargo.lock
+
+# Node
+node_modules/
+.pnpm-store/
+
+# Turbo
+.turbo/
+
+# Results (keep structure, ignore data)
+results/*.csv
+results/*.txt
+results/*.json
+!results/.gitkeep
+
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Docker
+docker/data/
+
+# Logs
+*.log
+
+# Environment
+.env
+.env.local

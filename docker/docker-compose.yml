@@ -1,0 +1,74 @@
+# Docker Compose for MPI Cluster Simulation
+#
+# Creates a 3-node cluster:
+#   - mpi-master: Orchestrates MPI jobs
+#   - mpi-worker-1: Worker node
+#   - mpi-worker-2: Worker node
+#
+# Usage:
+#   docker-compose up -d
+#   docker exec mpi-master mpirun -np 3 --hostfile /app/hostfile /app/primes-mpi
+
+services:
+  mpi-master:
+    build:
+      context: .
+      dockerfile: Dockerfile.mpi-node
+    container_name: mpi-master
+    hostname: mpi-master
+    networks:
+      mpi-network:
+        ipv4_address: 172.28.0.10
+    volumes:
+      - ./shared:/app/shared
+    deploy:
+      resources:
+        limits:
+          cpus: '2'
+          memory: 1G
+
+  mpi-worker-1:
+    build:
+      context: .
+      dockerfile: Dockerfile.mpi-node
+    container_name: mpi-worker-1
+    hostname: mpi-worker-1
+    networks:
+      mpi-network:
+        ipv4_address: 172.28.0.11
+    volumes:
+      - ./shared:/app/shared
+    depends_on:
+      - mpi-master
+    deploy:
+      resources:
+        limits:
+          cpus: '2'
+          memory: 1G
+
+  mpi-worker-2:
+    build:
+      context: .
+      dockerfile: Dockerfile.mpi-node
+    container_name: mpi-worker-2
+    hostname: mpi-worker-2
+    networks:
+      mpi-network:
+        ipv4_address: 172.28.0.12
+    volumes:
+      - ./shared:/app/shared
+    depends_on:
+      - mpi-master
+    deploy:
+      resources:
+        limits:
+          cpus: '2'
+          memory: 1G
+
+networks:
+  mpi-network:
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 172.28.0.0/16
+          gateway: 172.28.0.1

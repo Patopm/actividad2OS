@@ -1,0 +1,19 @@
+[workspace]
+resolver = "2"
+members = [
+    "apps/primes-sequential",
+    "apps/primes-multithread",
+    "apps/scheduler-sim",
+    "apps/primes-mpi",
+]
+
+[workspace.package]
+version = "0.1.0"
+edition = "2021"
+authors = ["Patricio Piña <egs.pato.pm@gmail.com>"]
+license = "MIT"
+
+[workspace.dependencies]
+clap = { version = "4.4", features = ["derive"] }
+rayon = "1.8"
+libc = "0.2"

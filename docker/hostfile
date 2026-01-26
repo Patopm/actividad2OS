@@ -1,0 +1,7 @@
+# MPI Hostfile
+# Format: hostname slots=N
+# slots = number of processes to run on this host
+
+mpi-master slots=1
+mpi-worker-1 slots=1
+mpi-worker-2 slots=1

@@ -1,0 +1,28 @@
+{
+  "name": "os-parallel-project",
+  "version": "1.0.0",
+  "description": "Multithreaded and distributed computing project for OS course",
+  "scripts": {
+    "build": "cargo build --release",
+    "build:debug": "cargo build",
+    "clean": "cargo clean",
+    
+    "bench:seq": "./scripts/benchmark.sh sequential",
+    "bench:mt": "./scripts/benchmark.sh multithread",
+    "bench:all": "./scripts/benchmark.sh all",
+    
+    "scheduler:test": "./scripts/scheduler-test.sh",
+    
+    "cluster:setup": "./scripts/cluster-setup.sh",
+    "cluster:run": "./scripts/cluster-run.sh",
+    
+    "io:analyze": "./scripts/io-analysis.sh",
+    
+    "setup:rhel": "./scripts/setup-rhel.sh",
+    "all": "./scripts/run-all.sh"
+  },
+  "devDependencies": {
+    "turbo": "^2.7.6"
+  },
+  "packageManager": "pnpm@10.23.0"
+}

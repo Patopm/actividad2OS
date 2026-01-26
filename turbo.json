@@ -1,0 +1,48 @@
+{
+  "$schema": "https://turbo.build/schema.json",
+  "tasks": {
+    "build": {
+      "dependsOn": ["^build"],
+      "outputs": ["target/**"]
+    },
+    "bench:seq": {
+      "dependsOn": ["build"],
+      "cache": false
+    },
+    "bench:mt": {
+      "dependsOn": ["build"],
+      "cache": false
+    },
+    "bench:all": {
+      "dependsOn": ["build"],
+      "cache": false
+    },
+    "scheduler:test": {
+      "dependsOn": ["build"],
+      "cache": false
+    },
+    "cluster:setup": {
+      "cache": false
+    },
+    "cluster:run": {
+      "dependsOn": ["build", "cluster:setup"],
+      "cache": false
+    },
+    "io:analyze": {
+      "cache": false
+    },
+    "setup:rhel": {
+      "cache": false
+    },
+    "all": {
+      "dependsOn": [
+        "build",
+        "bench:all",
+        "scheduler:test",
+        "cluster:run",
+        "io:analyze"
+      ],
+      "cache": false
+    }
+  }
+}

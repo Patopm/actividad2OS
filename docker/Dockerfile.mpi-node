@@ -1,0 +1,60 @@
+# MPI Node Image for Prime Calculation Cluster
+#
+# This image contains OpenMPI and Rust runtime for running
+# distributed prime calculations across multiple nodes.
+
+FROM rockylinux:9
+
+LABEL maintainer="OS Project"
+LABEL description="MPI node for distributed prime calculation"
+
+# Install dependencies
+RUN dnf update -y && \
+    dnf install -y \
+        gcc \
+        gcc-c++ \
+        make \
+        openmpi \
+        openmpi-devel \
+        openssh-server \
+        openssh-clients \
+        which \
+        hostname \
+        iproute \
+        net-tools \
+        && dnf clean all
+
+# Setup OpenMPI environment
+ENV PATH="/usr/lib64/openmpi/bin:${PATH}"
+ENV LD_LIBRARY_PATH="/usr/lib64/openmpi/lib:${LD_LIBRARY_PATH}"
+ENV OMPI_ALLOW_RUN_AS_ROOT=1
+ENV OMPI_ALLOW_RUN_AS_ROOT_CONFIRM=1
+
+# Configure SSH for MPI communication
+RUN mkdir -p /var/run/sshd && \
+    ssh-keygen -A && \
+    echo 'root:mpipassword' | chpasswd && \
+    sed -i 's/#PermitRootLogin prohibit-password/PermitRootLogin yes/' /etc/ssh/sshd_config && \
+    sed -i 's/#StrictHostKeyChecking ask/StrictHostKeyChecking no/' /etc/ssh/ssh_config && \
+    echo "StrictHostKeyChecking no" >> /etc/ssh/ssh_config && \
+    echo "UserKnownHostsFile /dev/null" >> /etc/ssh/ssh_config
+
+# Generate SSH keys for passwordless authentication
+RUN ssh-keygen -t rsa -N "" -f /root/.ssh/id_rsa && \
+    cat /root/.ssh/id_rsa.pub >> /root/.ssh/authorized_keys && \
+    chmod 600 /root/.ssh/authorized_keys
+
+# Create working directory
+WORKDIR /app
+
+# Copy the MPI binary (will be built on host and copied)
+COPY --chmod=755 primes-mpi /app/primes-mpi
+
+# Copy hostfile template
+COPY hostfile /app/hostfile
+
+# Expose SSH port
+EXPOSE 22
+
+# Start SSH daemon
+CMD ["/usr/sbin/sshd", "-D"]
