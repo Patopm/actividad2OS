@@ -101,10 +101,15 @@ install_openmpi() {
 install_node_pnpm() {
   log_info "Installing Node.js and pnpm..."
 
-  # Install Node.js via dnf
-  dnf install -y nodejs
+  # Download and install nvm:
+  curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.3/install.sh | bash
 
-  # Install pnpm
+  # in lieu of restarting the shell
+  \. "$HOME/.nvm/nvm.sh"
+
+  # Download and install Node.js:
+  nvm install 24
+
   npm install -g pnpm
 
   log_info "Node.js version: $(node --version)"
