@@ -53,7 +53,6 @@ install_dev_tools() {
     curl \
     wget \
     vim \
-    htop \
     perf \
     strace
 }
@@ -103,8 +102,8 @@ install_openmpi() {
 install_node_pnpm() {
   log_info "Installing Node.js and pnpm..."
 
-  # Install Node.js via dnf module
-  dnf module install -y nodejs:24
+  # Install Node.js via dnf
+  dnf install -y nodejs
 
   # Install pnpm
   npm install -g pnpm
