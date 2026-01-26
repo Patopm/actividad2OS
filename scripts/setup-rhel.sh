@@ -86,9 +86,8 @@ install_openmpi() {
   echo 'export LD_LIBRARY_PATH=/usr/lib64/openmpi/lib:$LD_LIBRARY_PATH' >>~/.bashrc
 
   # Load for current session
-  export PATH=/usr/lib64/openmpi/bin:$PATH
-  export LD_LIBRARY_PATH=/usr/lib64/openmpi/lib:$LD_LIBRARY_PATH
-
+  export PATH="/usr/lib64/openmpi/bin:${PATH:-}"
+  export LD_LIBRARY_PATH="/usr/lib64/openmpi/lib:${LD_LIBRARY_PATH:-}"
   # Verify installation
   if command -v mpirun &>/dev/null; then
     log_info "OpenMPI installed successfully: $(mpirun --version | head -1)"
