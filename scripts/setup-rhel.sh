@@ -63,7 +63,7 @@ install_rust() {
   if command -v rustc &>/dev/null; then
     log_info "Rust is already installed: $(rustc --version)"
   else
-    curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y
+    curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y --default-toolchain stable --profile minimal
     source "$HOME/.cargo/env"
   fi
 
