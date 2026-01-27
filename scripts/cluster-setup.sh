@@ -69,75 +69,74 @@ check_prerequisites() {
     exit 1
   fi
 
-  # Check if Docker daemon is running
+  # Check if Docker daemon is running and accessible
   if ! docker info &>/dev/null; then
-    log_error "Docker daemon is not running."
+    log_error "Cannot access Docker daemon."
     echo ""
     
-    # Try to start Docker service (Linux with systemd)
-    if command -v systemctl &>/dev/null && systemctl is-system-running &>/dev/null 2>/dev/null; then
-      log_info "Attempting to start Docker daemon with systemctl..."
-      
-      # Check if user can run systemctl commands
-      if systemctl is-active docker &>/dev/null; then
-        log_info "Docker service exists but daemon is not responding"
-      fi
-      
-      # Try to start Docker service
-      if sudo systemctl start docker 2>/dev/null; then
-        log_info "Docker daemon started successfully"
-        # Wait a moment for Docker to be ready
-        sleep 3
-        if docker info &>/dev/null; then
-          log_info "Docker daemon is now running ✓"
-        else
-          log_error "Docker daemon started but not responding. Please check Docker status manually:"
-          echo "  sudo systemctl status docker"
-          exit 1
-        fi
-      else
-        log_warn "Could not start Docker daemon automatically (may require password or permissions)."
-        echo ""
-        log_info "Please start Docker manually:"
-        echo "  sudo systemctl start docker"
-        echo ""
-        log_info "To check Docker status:"
-        echo "  sudo systemctl status docker"
-        echo ""
-        log_info "After starting Docker, run this script again."
-        exit 1
+    # Check if user is in docker group
+    local in_docker_group=false
+    if id -nG 2>/dev/null | grep -qw docker; then
+      in_docker_group=true
+    fi
+    
+    # Check if Docker service is running (requires root to check)
+    local docker_running=false
+    if command -v systemctl &>/dev/null; then
+      if systemctl is-active --quiet docker 2>/dev/null || sudo systemctl is-active --quiet docker 2>/dev/null; then
+        docker_running=true
       fi
     elif command -v service &>/dev/null; then
-      # Try SysV init style
-      log_info "Attempting to start Docker daemon with service..."
-      if sudo service docker start 2>/dev/null; then
-        sleep 3
-        if docker info &>/dev/null; then
-          log_info "Docker daemon is now running ✓"
-        else
-          log_error "Docker daemon started but not responding."
-          exit 1
-        fi
-      else
-        log_warn "Could not start Docker daemon automatically."
-        echo ""
-        log_info "Please start Docker manually:"
-        echo "  sudo service docker start"
-        exit 1
+      if service docker status &>/dev/null 2>&1 || sudo service docker status &>/dev/null 2>&1; then
+        docker_running=true
       fi
-    else
-      # Not a standard Linux init system, provide manual instructions
+    fi
+    
+    if [ "$docker_running" = true ] && [ "$in_docker_group" = false ]; then
+      log_warn "Docker daemon is running, but you don't have permission to access it."
       echo ""
-      log_info "Please start Docker manually:"
-      echo "  sudo systemctl start docker    # Linux with systemd"
-      echo "  sudo service docker start      # Linux with SysV init"
-      echo "  # On macOS/Windows, start Docker Desktop application"
+      log_info "Solution: Add yourself to the docker group (requires admin/sudo):"
+      echo "  sudo usermod -aG docker $USER"
+      echo ""
+      log_info "After adding yourself to the docker group:"
+      echo "  1. Log out and log back in (or run: newgrp docker)"
+      echo "  2. Run this script again"
+      exit 1
+    elif [ "$docker_running" = false ]; then
+      log_warn "Docker daemon is not running."
+      echo ""
+      log_info "Solution: Start Docker daemon (requires admin/sudo):"
+      if command -v systemctl &>/dev/null; then
+        echo "  sudo systemctl start docker"
+        echo "  sudo systemctl enable docker  # Enable auto-start on boot"
+      elif command -v service &>/dev/null; then
+        echo "  sudo service docker start"
+      else
+        echo "  # On macOS/Windows, start Docker Desktop application"
+      fi
+      echo ""
+      if [ "$in_docker_group" = false ]; then
+        log_info "Also, add yourself to the docker group to avoid sudo:"
+        echo "  sudo usermod -aG docker $USER"
+        echo "  # Then log out and log back in"
+      fi
       echo ""
       log_info "After starting Docker, run this script again."
+      exit 1
+    else
+      log_error "Docker daemon status unknown. Please check manually:"
+      echo "  sudo systemctl status docker"
       exit 1
     fi
   else
     log_info "Docker daemon is running ✓"
+    
+    # Check if user needs sudo (warn if they do)
+    if docker info &>/dev/null && ! groups | grep -qw docker 2>/dev/null; then
+      log_warn "You can access Docker, but consider adding yourself to docker group:"
+      echo "  sudo usermod -aG docker $USER"
+      echo "  # Then log out and log back in to avoid sudo prompts"
+    fi
   fi
 }
 
