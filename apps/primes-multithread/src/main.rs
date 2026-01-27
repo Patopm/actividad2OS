@@ -189,7 +189,6 @@ fn segmented_sieve_parallel(limit: u64, num_threads: usize) -> (Vec<u64>, Thread
         return (
             base_primes,
             ThreadMetrics {
-                thread_count: 1,
                 segments: vec![],
             },
         );
@@ -269,7 +268,6 @@ fn segmented_sieve_parallel(limit: u64, num_threads: usize) -> (Vec<u64>, Thread
     // Build metrics
     let metrics_guard = metrics.lock().unwrap();
     let thread_metrics = ThreadMetrics {
-        thread_count: num_threads,
         segments: metrics_guard.clone(),
     };
 
@@ -278,7 +276,6 @@ fn segmented_sieve_parallel(limit: u64, num_threads: usize) -> (Vec<u64>, Thread
 
 #[derive(Default)]
 struct ThreadMetrics {
-    thread_count: usize,
     segments: Vec<(u64, u64, usize)>, // (low, high, prime_count)
 }
 

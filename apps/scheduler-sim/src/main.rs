@@ -94,8 +94,6 @@ struct ThreadMetrics {
     turnaround_time: Duration,
     /// Number of primes found
     primes_found: usize,
-    /// Number of context switches (estimated)
-    work_iterations: u32,
 }
 
 /// Aggregated metrics for a scheduling policy run
@@ -106,7 +104,6 @@ struct PolicyMetrics {
     avg_wait_time_ms: f64,
     avg_execution_time_ms: f64,
     avg_turnaround_time_ms: f64,
-    total_primes: usize,
     throughput: f64, // primes per second
     wall_clock_time_ms: f64,
 }
@@ -251,8 +248,6 @@ fn run_with_policy(
     iterations: u32,
     verbose: bool,
 ) -> Result<PolicyMetrics, String> {
-    let creation_time = Instant::now();
-
     // Barrier to synchronize thread start
     let barrier = Arc::new(Barrier::new(num_threads + 1)); // +1 for main thread
 
@@ -310,7 +305,6 @@ fn run_with_policy(
                 execution_time,
                 turnaround_time,
                 primes_found: total_primes,
-                work_iterations: iterations,
             };
 
             let mut guard = metrics.lock().unwrap();
@@ -407,7 +401,6 @@ fn run_with_policy(
         avg_wait_time_ms,
         avg_execution_time_ms,
         avg_turnaround_time_ms,
-        total_primes: metrics_guard[0].primes_found, // Same for all threads
         throughput,
         wall_clock_time_ms: wall_clock_time.as_secs_f64() * 1000.0,
     })
