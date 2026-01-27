@@ -122,10 +122,19 @@ install_dev_tools() {
     wget \
     vim \
     perf \
-    strace
+    strace \
+    clang \
+    clang-devel
   
   # Clean cache immediately after installation
   clean_dnf_cache
+  
+  # Verify clang installation for bindgen/libclang
+  if command -v clang &>/dev/null; then
+    log_info "Clang installed successfully: $(clang --version | head -1)"
+  else
+    log_warn "Clang installation may have failed - bindgen will need libclang"
+  fi
 }
 
 # Install Rust
