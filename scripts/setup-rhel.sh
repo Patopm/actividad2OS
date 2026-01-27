@@ -124,8 +124,7 @@ install_docker() {
     docker-common docker-latest docker-latest-logrotate \
     docker-logrotate docker-engine podman runc 2>/dev/null || true
 
-  dnf config-manager --add-repo \
-    https://download.docker.com/linux/rhel/docker-ce.repo
+  sudo dnf config-manager addrepo --from-repofile https://download.docker.com/linux/fedora/docker-ce.repo
 
   dnf install -y docker-ce docker-ce-cli containerd.io docker-compose-plugin
 
