@@ -162,8 +162,6 @@ fn sieve_segment(low: u64, high: u64, base_primes: &[u64]) -> Vec<u64> {
 mod mpi_impl {
     use super::*;
     use mpi::collective::CommunicatorCollectives;
-    use mpi::point_to_point::{Destination, Source};
-    use mpi::topology::Communicator;
     use mpi::traits::*;
 
     pub fn run_mpi(args: &Args) -> Result<DistributedResult, String> {
@@ -209,14 +207,9 @@ mod mpi_impl {
             );
         }
 
-        // Gather counts at root
-        let mut all_counts = if rank == 0 {
-            vec![0usize; size as usize]
-        } else {
-            vec![]
-        };
-
-        world.gather_into_root(&local_count, &mut all_counts);
+        // Gather counts at root using all_gather_into (gathers to all ranks)
+        let mut all_counts = vec![0usize; size as usize];
+        world.all_gather_into(&local_count, &mut all_counts);
 
         // Calculate total
         let elapsed = start_time.elapsed();
@@ -316,7 +309,7 @@ mod tcp_impl {
         let segment_size = (range_size + total_nodes as u64 - 1) / total_nodes as u64;
 
         // Send work to workers
-        for (i, mut worker) in workers.iter_mut().enumerate() {
+        for (i, worker) in workers.iter_mut().enumerate() {
             let worker_id = i + 1; // Master is 0
             let low = range_start + (worker_id as u64 * segment_size);
             let high = std::cmp::min(low + segment_size - 1, args.limit);
@@ -349,7 +342,7 @@ mod tcp_impl {
         // Collect results from workers
         let mut node_counts = vec![master_count];
 
-        for (i, mut worker) in workers.iter_mut().enumerate() {
+        for (i, worker) in workers.iter_mut().enumerate() {
             let mut len_buf = [0u8; 4];
             worker
                 .read_exact(&mut len_buf)
