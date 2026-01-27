@@ -71,10 +71,74 @@ check_prerequisites() {
 
   # Check if Docker daemon is running
   if ! docker info &>/dev/null; then
-    log_error "Docker daemon is not running. Please start Docker."
-    exit 1
+    log_error "Docker daemon is not running."
+    echo ""
+    
+    # Try to start Docker service (Linux with systemd)
+    if command -v systemctl &>/dev/null && systemctl is-system-running &>/dev/null 2>/dev/null; then
+      log_info "Attempting to start Docker daemon with systemctl..."
+      
+      # Check if user can run systemctl commands
+      if systemctl is-active docker &>/dev/null; then
+        log_info "Docker service exists but daemon is not responding"
+      fi
+      
+      # Try to start Docker service
+      if sudo systemctl start docker 2>/dev/null; then
+        log_info "Docker daemon started successfully"
+        # Wait a moment for Docker to be ready
+        sleep 3
+        if docker info &>/dev/null; then
+          log_info "Docker daemon is now running ✓"
+        else
+          log_error "Docker daemon started but not responding. Please check Docker status manually:"
+          echo "  sudo systemctl status docker"
+          exit 1
+        fi
+      else
+        log_warn "Could not start Docker daemon automatically (may require password or permissions)."
+        echo ""
+        log_info "Please start Docker manually:"
+        echo "  sudo systemctl start docker"
+        echo ""
+        log_info "To check Docker status:"
+        echo "  sudo systemctl status docker"
+        echo ""
+        log_info "After starting Docker, run this script again."
+        exit 1
+      fi
+    elif command -v service &>/dev/null; then
+      # Try SysV init style
+      log_info "Attempting to start Docker daemon with service..."
+      if sudo service docker start 2>/dev/null; then
+        sleep 3
+        if docker info &>/dev/null; then
+          log_info "Docker daemon is now running ✓"
+        else
+          log_error "Docker daemon started but not responding."
+          exit 1
+        fi
+      else
+        log_warn "Could not start Docker daemon automatically."
+        echo ""
+        log_info "Please start Docker manually:"
+        echo "  sudo service docker start"
+        exit 1
+      fi
+    else
+      # Not a standard Linux init system, provide manual instructions
+      echo ""
+      log_info "Please start Docker manually:"
+      echo "  sudo systemctl start docker    # Linux with systemd"
+      echo "  sudo service docker start      # Linux with SysV init"
+      echo "  # On macOS/Windows, start Docker Desktop application"
+      echo ""
+      log_info "After starting Docker, run this script again."
+      exit 1
+    fi
+  else
+    log_info "Docker daemon is running ✓"
   fi
-  log_info "Docker daemon is running"
 }
 
 # Build the Rust binary for the container
