@@ -8,6 +8,7 @@
 # Usage:
 #   docker-compose up -d
 #   docker exec mpi-master mpirun -np 3 --hostfile /app/hostfile /app/primes-mpi
+version: "3.8"
 
 services:
   mpi-master:
@@ -17,15 +18,15 @@ services:
     container_name: mpi-master
     hostname: mpi-master
     networks:
-      mpi-network:
-        ipv4_address: 172.28.0.10
+      - mpi-net
     volumes:
       - ./shared:/app/shared
-    deploy:
-      resources:
-        limits:
-          cpus: '2'
-          memory: 1G
+      - ssh-key-vol:/root/.ssh  # shared SSH keys
+    environment:
+      - OMPI_MCA_btl_tcp_if_include=eth0
+      - OMPI_MCA_oob_tcp_if_include=eth0
+      - OMPI_MCA_orte_keep_fqdn_hostnames=1
+    command: ["/usr/sbin/sshd", "-D"]
 
   mpi-worker-1:
     build:
@@ -34,17 +35,16 @@ services:
     container_name: mpi-worker-1
     hostname: mpi-worker-1
     networks:
-      mpi-network:
-        ipv4_address: 172.28.0.11
+      - mpi-net
     volumes:
       - ./shared:/app/shared
+      - ssh-key-vol:/root/.ssh
+    environment:
+      - OMPI_MCA_btl_tcp_if_include=eth0
+      - OMPI_MCA_oob_tcp_if_include=eth0
     depends_on:
       - mpi-master
-    deploy:
-      resources:
-        limits:
-          cpus: '2'
-          memory: 1G
+    command: ["/usr/sbin/sshd", "-D"]
 
   mpi-worker-2:
     build:
@@ -53,22 +53,20 @@ services:
     container_name: mpi-worker-2
     hostname: mpi-worker-2
     networks:
-      mpi-network:
-        ipv4_address: 172.28.0.12
+      - mpi-net
     volumes:
       - ./shared:/app/shared
+      - ssh-key-vol:/root/.ssh
+    environment:
+      - OMPI_MCA_btl_tcp_if_include=eth0
+      - OMPI_MCA_oob_tcp_if_include=eth0
     depends_on:
       - mpi-master
-    deploy:
-      resources:
-        limits:
-          cpus: '2'
-          memory: 1G
+    command: ["/usr/sbin/sshd", "-D"]
+
+volumes:
+  ssh-key-vol:
 
 networks:
-  mpi-network:
+  mpi-net:
     driver: bridge
-    ipam:
-      config:
-        - subnet: 172.28.0.0/16
-          gateway: 172.28.0.1
