@@ -141,6 +141,8 @@ generate_comparison() {
   local seq_time
   if [[ -f "$RESULTS_DIR/.seq_avg_time" ]]; then
     seq_time=$(cat "$RESULTS_DIR/.seq_avg_time")
+    seq_time=${seq_time/,/.}
+    sec_time=${echo $seq_time | tr -d '[:space:]'}
   else
     echo "Sequential benchmark results not found. Run 'benchmark.sh sequential' first."
     return 1
