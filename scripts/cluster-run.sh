@@ -136,34 +136,35 @@ run_benchmarks() {
   done
 
   # TCP distributed (2 workers)
-  # TCP distributed (2 workers)
-log_info "Running TCP distributed (3 nodes)..."
-for limit in "${limits[@]}"; do
-  for i in $(seq 1 $iterations); do
-    killall $(basename "$BINARY") 2>/dev/null || true
-    sleep 0.2
+  log_info "Running TCP distributed (3 nodes)..."
+  for limit in "${limits[@]}"; do
+    for i in $(seq 1 $iterations); do
+      killall $(basename "$BINARY") 2>/dev/null || true
+      sleep 0.2
 
-    "$BINARY" --worker --master-addr "127.0.0.1:$TCP_PORT" --verbose >&2 &
-    w1_pid=$!
-    "$BINARY" --worker --master-addr "127.0.0.1:$TCP_PORT" --verbose >&2 &
-    w2_pid=$!
+      "$BINARY" --worker --master-addr "127.0.0.1:$TCP_PORT" --verbose >&2 &
+      w1_pid=$!
+      "$BINARY" --worker --master-addr "127.0.0.1:$TCP_PORT" --verbose >&2 &
+      w2_pid=$!
 
-    full_output=$("$BINARY" --tcp --master-addr "127.0.0.1:$TCP_PORT" \
-                  --workers 2 --limit "$limit" --csv 2>&1 | tee /dev/stderr)
+      full_output=$("$BINARY" --tcp --master-addr "127.0.0.1:$TCP_PORT" \
+        --workers 2 --limit "$limit" --csv 2>&1 | tee /dev/stderr)
 
-    csv_line=$(echo "$full_output" | grep -E '^[0-9]+,[0-9]+,[0-9.]+,[0-9]+')
+      csv_line=$(echo "$full_output" | grep -E '^[0-9]+,[0-9]+,[0-9.]+,[0-9]+')
 
-    if [[ -n "$csv_line" ]]; then
-      echo "tcp,3,$limit,$(echo "$csv_line" | cut -d',' -f3),$(echo "$csv_line" | cut -d',' -f4)" >> "$output_file"
-      log_info "Success: $(echo "$csv_line" | cut -d',' -f3)ms"
-    else
-      log_error "Iteration failed - Master did not return CSV data"
-    fi
+      if [[ -n "$csv_line" ]]; then
+        echo "tcp,3,$limit,$(echo "$csv_line" | cut -d',' -f3),$(echo "$csv_line" | cut -d',' -f4)" >>"$output_file"
+        log_info "Success: $(echo "$csv_line" | cut -d',' -f3)ms"
+      else
+        log_error "Iteration failed - Master did not return CSV data"
+      fi
 
-    kill $w1_pid $w2_pid 2>/dev/null || true
-    wait $w1_pid $w2_pid 2>/dev/null
+      kill $w1_pid $w2_pid 2>/dev/null || true
+      wait $w1_pid $w2_pid 2>/dev/null
+    done
   done
-done# MPI cluster (if running)
+
+  # MPI cluster (if running)
   if check_cluster; then
     log_info "Running MPI cluster (3 nodes)..."
     for limit in "${limits[@]}"; do
