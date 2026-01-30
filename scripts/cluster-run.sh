@@ -139,7 +139,6 @@ run_benchmarks() {
   log_info "Running TCP distributed (3 nodes)..."
   for limit in "${limits[@]}"; do
     for i in $(seq 1 $iterations); do
-      log_debug "  Iteration $i for limit $limit..."
 
       "$BINARY" --worker --master-addr "127.0.0.1:$TCP_PORT" >/dev/null 2>&1 &
       w1_pid=$!
