@@ -1,0 +1,18 @@
+# Command: bash -c 
+    for dev in /sys/block/*; do
+      d=$(basename "$dev")
+      if [[ -f "$dev/queue/scheduler" ]]; then
+        echo "$d scheduler: $(cat "$dev/queue/scheduler")"
+      fi
+      if [[ -f "$dev/queue/rotational" ]]; then
+        echo "$d rotational: $(cat "$dev/queue/rotational")"
+      fi
+      if [[ -f "$dev/queue/nr_requests" ]]; then
+        echo "$d nr_requests: $(cat "$dev/queue/nr_requests")"
+      fi
+      echo ""
+    done
+  
+# Date: Thu Jan 29 09:23:31 CST 2026
+
+

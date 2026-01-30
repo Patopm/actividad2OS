@@ -1,0 +1,4 @@
+# Command: lsblk -a -o NAME,KNAME,TYPE,SIZE,ROTA,MOUNTPOINTS,FSTYPE,MODEL,SERIAL
+# Date: Thu Jan 29 09:23:31 CST 2026
+
+scripts/io-analysis.sh: line 58: lsblk: command not found

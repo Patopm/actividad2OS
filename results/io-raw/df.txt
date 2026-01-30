@@ -1,0 +1,6 @@
+# Command: df -hT
+# Date: Thu Jan 29 09:23:31 CST 2026
+
+df: option requires an argument -- T
+usage: df [--libxo] [-b | -g | -H | -h | -k | -m | -P] [-acIilnY] [-,] [-T type] [-t type]
+          [file | filesystem ...]

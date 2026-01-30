@@ -1,0 +1,203 @@
+# Command: bash -c lsof -nP 2>/dev/null | head -n 200 || true
+# Date: Thu Jan 29 09:23:31 CST 2026
+
+COMMAND     PID     USER   FD      TYPE             DEVICE      SIZE/OFF                NODE NAME
+loginwind   585 patopina  cwd       DIR               1,16           704                   2 /
+loginwind   585 patopina  txt       REG               1,16       3155872 1152921500312102592 /System/Library/CoreServices/loginwindow.app/Contents/MacOS/loginwindow
+loginwind   585 patopina  txt       REG               1,16         73840             8400197 /Library/Preferences/Logging/.plist-cache.Mge4C6lV
+loginwind   585 patopina  txt       REG               1,14        476704               77507 /System/Volumes/Preboot/Cryptexes/OS/usr/lib/libLaunchServicesSupport.dylib
+loginwind   585 patopina  txt       REG               1,16           688 1152921500312102621 /System/Library/CoreServices/loginwindow.app/Contents/Resources/InfoPlist.loctable
+loginwind   585 patopina  txt       REG               1,16           110 1152921500312100234 /System/Library/CoreServices/SystemVersion.bundle/English.lproj/SystemVersion.strings
+loginwind   585 patopina  txt       REG               1,16        137016 1152921500312099923 /System/Library/CoreServices/SystemAppearance.bundle/Contents/Resources/SystemAppearance.car
+loginwind   585 patopina  txt       REG               1,16        193408 1152921500312213364 /System/Library/LoginPlugins/FSDisconnect.loginPlugin/Contents/MacOS/FSDisconnect
+loginwind   585 patopina  txt       REG               1,16        305376 1152921500312213314 /System/Library/LoginPlugins/DisplayServices.loginPlugin/Contents/MacOS/DisplayServices
+loginwind   585 patopina  txt       REG               1,16        255956 1152921500312156903 /System/Library/Frameworks/OpenDirectory.framework/Versions/A/Frameworks/CFOpenDirectory.framework/Versions/A/Resources/Localizable.loctable
+loginwind   585 patopina  txt       REG               1,16        249661 1152921500312208398 /System/Library/Keyboard Layouts/AppleKeyboardLayouts.bundle/Contents/Resources/InfoPlist.loctable
+loginwind   585 patopina  txt       REG               1,16       2299152 1152921500312563341 /usr/lib/dyld
+loginwind   585 patopina  txt       REG               1,16      34147264 1152921500312573805 /usr/share/icu/icudt76l.dat
+loginwind   585 patopina  txt       REG               1,16       7912984 1152921500312099884 /System/Library/CoreServices/SystemAppearance.bundle/Contents/Resources/Aqua.car
+loginwind   585 patopina  txt       REG               1,16       2976648 1152921500312099912 /System/Library/CoreServices/SystemAppearance.bundle/Contents/Resources/FauxVibrantLight.car
+loginwind   585 patopina  txt       REG               1,16       6223976 1152921500312099937 /System/Library/CoreServices/SystemAppearance.bundle/Contents/Resources/VibrantLight.car
+loginwind   585 patopina  txt       REG               1,16       1554156 1152921500312208396 /System/Library/Keyboard Layouts/AppleKeyboardLayouts.bundle/Contents/Resources/AppleKeyboardLayouts-L.dat
+loginwind   585 patopina  txt       REG               1,16        696555 1152921500312102667 /System/Library/CoreServices/loginwindow.app/Contents/Resources/loginwindow.loctable
+loginwind   585 patopina  txt       REG               1,16          4201 1152921500312102619 /System/Library/CoreServices/loginwindow.app/Contents/Resources/ForceQuitPanel.loctable
+loginwind   585 patopina  txt       REG               1,16        752384 1152921500312213251 /System/Library/LoginPlugins/BezelServices.loginPlugin/Contents/MacOS/BezelServices
+loginwind   585 patopina  txt       REG               1,16         73240 1152921500312099908 /System/Library/CoreServices/SystemAppearance.bundle/Contents/Resources/FauxVibrantDark.car
+loginwind   585 patopina  txt       REG               1,16        248480 1152921500312563357 /usr/lib/libobjc-trampolines.dylib
+loginwind   585 patopina  txt       REG               1,16          9346 1152921500312140440 /System/Library/Frameworks/AppKit.framework/Versions/C/Resources/Placeholders.loctable
+loginwind   585 patopina  txt       REG               1,16         69277 1152921500312081256 /System/Library/CoreServices/CoreTypes.bundle/Contents/Resources/UnknownFSObjectIcon.icns
+loginwind   585 patopina  txt       REG               1,16        157056 1152921500312563386 /usr/lib/pam/pam_opendirectory.so.2
+loginwind   585 patopina  txt       REG               1,16        550528 1152921500312092156 /System/Library/CoreServices/ManagedClient.app/Contents/PlugIns/MCXToolsInterface.bundle/Contents/MacOS/MCXToolsInterface
+loginwind   585 patopina  txt       REG               1,16         21880 1152921500312279480 /System/Library/PrivateFrameworks/CoreUI.framework/Versions/A/Resources/DesignLibrary-macOS.bundle/Contents/Resources/macOSRepositories/LightFauxVibrantStandard.car
+loginwind   585 patopina  txt       REG               1,16         27368             8429449 /Library/Caches/com.apple.iconservices.store/48B5E2F3-3E5A-3565-8E6B-4701B218EF02.isdata
+loginwind   585 patopina  txt       REG               1,16         26728             8429440 /Library/Caches/com.apple.iconservices.store/83392EA8-C546-3D74-A430-5968471EAA68.isdata
+loginwind   585 patopina  txt       REG               1,16        114133 1152921500312324425 /System/Library/PrivateFrameworks/LoginUIKit.framework/Versions/A/Resources/Localizable.loctable
+loginwind   585 patopina  txt       REG               1,16         95176 1152921500312260454 /System/Library/PrivateFrameworks/BatteryUIKit.framework/Versions/A/Resources/Assets.car
+loginwind   585 patopina  txt       REG               1,16          6778 1152921500312205273 /System/Library/Input Methods/CharacterPalette.app/Contents/Resources/InfoPlist.loctable
+loginwind   585 patopina  txt       REG               1,16         60821 1152921500312140254 /System/Library/Frameworks/AppKit.framework/Versions/C/Resources/Common.loctable
+loginwind   585 patopina  txt       REG               1,16         13809 1152921500312324409 /System/Library/PrivateFrameworks/LoginUIKit.framework/Versions/A/Resources/LUI2PasswordHelpViewController.loctable
+loginwind   585 patopina  txt       REG               1,16        265952 1152921500312100381 /System/Library/CoreServices/TextInputMenuCore.bundle/Contents/MacOS/TextInputMenuCore
+loginwind   585 patopina  txt       REG               1,16        139252             8400295 /System/Library/Caches/com.apple.IntlDataCache.le.kbdx
+loginwind   585 patopina  txt       REG               1,16         10457 1152921500312324145 /System/Library/PrivateFrameworks/LoginUIKit.framework/Versions/A/Frameworks/LoginUICore.framework/Versions/A/Resources/Localizable.loctable
+loginwind   585 patopina  txt       REG               1,16        223892 1152921500312138325 /System/Library/Fonts/SFNSMono.ttf
+loginwind   585 patopina  txt       REG               1,16            85 1152921500311880873 /System/Library/SystemProfiler/SPDeveloperToolsReporter.spreporter/Contents/Resources/InfoPlist.loctable
+loginwind   585 patopina  txt       REG               1,16       7795064 1152921500312099896 /System/Library/CoreServices/SystemAppearance.bundle/Contents/Resources/DarkAqua.car
+loginwind   585 patopina  txt       REG               1,16       6742984 1152921500312099927 /System/Library/CoreServices/SystemAppearance.bundle/Contents/Resources/VibrantDark.car
+loginwind   585 patopina  txt       REG               1,16         50197 1152921500312140480 /System/Library/Frameworks/AppKit.framework/Versions/C/Resources/Undo.loctable
+loginwind   585 patopina  txt       REG               1,16         29800 1152921500312279484 /System/Library/PrivateFrameworks/CoreUI.framework/Versions/A/Resources/DesignLibrary-macOS.bundle/Contents/Resources/macOSRepositories/LightStandard.car
+loginwind   585 patopina  txt       REG               1,16        177475 1152921500312140338 /System/Library/Frameworks/AppKit.framework/Versions/C/Resources/MenuCommands.loctable
+loginwind   585 patopina  txt       REG               1,16         51096             8429446 /Library/Caches/com.apple.iconservices.store/338DC4B8-D49C-3B9B-9CA0-4CD9F7A0176B.isdata
+loginwind   585 patopina  txt       REG               1,16        638976             8408299 /private/var/folders/jj/kshx6fns0jd2nbcfpl0qvn4w0000gn/C/com.apple.iconservices/store.index
+loginwind   585 patopina  txt       REG               1,16       2369592 1152921500312138245 /System/Library/Fonts/Helvetica.ttc
+loginwind   585 patopina  txt       REG               1,16       8333964 1152921500312138321 /System/Library/Fonts/SFNS.ttf
+loginwind   585 patopina  txt       REG               1,16       3359496 1152921500312099890 /System/Library/CoreServices/SystemAppearance.bundle/Contents/Resources/Assets.car
+loginwind   585 patopina  txt       REG               1,16       2044376 1152921500312140164 /System/Library/Frameworks/AppKit.framework/Versions/C/Resources/Assets.car
+loginwind   585 patopina  txt       REG               1,16        862424 1152921500312279654 /System/Library/PrivateFrameworks/CoreWLANKit.framework/Versions/A/Resources/Assets.car
+loginwind   585 patopina  txt       REG               1,16       3601584 1152921500312138205 /System/Library/Fonts/ADTNumeric.ttc
+loginwind   585 patopina  txt       REG               1,16         24216 1152921500312279474 /System/Library/PrivateFrameworks/CoreUI.framework/Versions/A/Resources/DesignLibrary-macOS.bundle/Contents/Resources/macOSRepositories/DarkStandard.car
+loginwind   585 patopina  txt       REG               1,16        294744 1152921500312324385 /System/Library/PrivateFrameworks/LoginUIKit.framework/Versions/A/Resources/Assets.car
+loginwind   585 patopina  txt       REG               1,16         85336 1152921500312282008 /System/Library/PrivateFrameworks/DesignLibrary.framework/Versions/A/Resources/Assets.car
+loginwind   585 patopina  txt       REG               1,16         12488 1152921500312099910 /System/Library/CoreServices/SystemAppearance.bundle/Contents/Resources/FauxVibrantDarkGraphite.car
+loginwind   585 patopina  txt       REG               1,16      24110800 1152921500312126036 /System/Library/Extensions/AGXMetalG16G_B0.bundle/Contents/MacOS/AGXMetalG16G_B0
+loginwind   585 patopina  txt       REG               1,16      37314096 1152921500312126043 /System/Library/Extensions/AGXMetalG16G_B0.bundle/Contents/Resources/ds.g16g
+loginwind   585 patopina  txt       REG               1,16     160168520 1152921500312347641 /System/Library/PrivateFrameworks/SFSymbols.framework/Versions/A/Resources/CoreGlyphs.bundle/Contents/Resources/Assets.car
+loginwind   585 patopina  txt       REG               1,16      13229472 1152921500312346490 /System/Library/PrivateFrameworks/RenderBox.framework/Versions/A/Resources/archive.metallib
+loginwind   585 patopina  txt       REG               1,16         20712 1152921500312279470 /System/Library/PrivateFrameworks/CoreUI.framework/Versions/A/Resources/DesignLibrary-macOS.bundle/Contents/Resources/macOSRepositories/DarkFauxVibrantStandard.car
+loginwind   585 patopina  txt       REG               1,16        196608              370929 /private/var/folders/jj/kshx6fns0jd2nbcfpl0qvn4w0000gn/C/com.apple.loginwindow/com.apple.metal/16777235_403/functions.data
+loginwind   585 patopina  txt       REG               1,16          4171 1152921500312206023 /System/Library/Input Methods/EmojiFunctionRowIM.app/Contents/PlugIns/EmojiFunctionRowIM_Extension.appex/Contents/Resources/InfoPlist.loctable
+loginwind   585 patopina  txt       REG               1,16       2068712 1152921500312099902 /System/Library/CoreServices/SystemAppearance.bundle/Contents/Resources/DarkGraphite.car
+loginwind   585 patopina  txt       REG               1,16       1656648 1152921500312099931 /System/Library/CoreServices/SystemAppearance.bundle/Contents/Resources/VibrantDarkGraphite.car
+loginwind   585 patopina  txt       REG               1,16        196608              766108 /private/var/folders/jj/kshx6fns0jd2nbcfpl0qvn4w0000gn/C/com.apple.loginwindow/com.apple.metal/32024/libraries.data
+loginwind   585 patopina  txt       REG               1,16         43227 1152921500312323660 /System/Library/PrivateFrameworks/LocalAuthenticationCore.framework/Versions/A/Resources/Localizable.loctable
+loginwind   585 patopina  txt       REG               1,16          9170 1152921500312207906 /System/Library/Input Methods/VietnameseIM.app/Contents/PlugIns/VIM_Extension.appex/Contents/Resources/InfoPlist.loctable
+loginwind   585 patopina  txt       REG               1,16         17543 1152921500312206574 /System/Library/Input Methods/KoreanIM.app/Contents/PlugIns/KIM_Extension.appex/Contents/Resources/InfoPlist.loctable
+loginwind   585 patopina  txt       REG               1,16          6060 1152921500312204316 /System/Library/Input Methods/AinuIM.app/Contents/Resources/InfoPlist.loctable
+loginwind   585 patopina  txt       REG               1,16         15375 1152921500312206954 /System/Library/Input Methods/SCIM.app/Contents/PlugIns/SCIM_Extension.appex/Contents/Resources/InfoPlist.loctable
+loginwind   585 patopina  txt       REG               1,16         29910 1152921500312100387 /System/Library/CoreServices/TextInputMenuCore.bundle/Contents/Resources/Localizable.loctable
+loginwind   585 patopina  txt       REG               1,16         11594 1152921500312207580 /System/Library/Input Methods/TrackpadIM.app/Contents/PlugIns/TIM_Extension.appex/Contents/Resources/InfoPlist.loctable
+loginwind   585 patopina  txt       REG               1,16          2426 1152921500312204250 /System/Library/Input Methods/50onPaletteServer.app/Contents/Resources/InfoPlist.loctable
+loginwind   585 patopina  txt       REG               1,16          5168 1152921500312204382 /System/Library/Input Methods/Assistive Control.app/Contents/Resources/InfoPlist.loctable
+loginwind   585 patopina  txt       REG               1,16         20236 1152921500312206104 /System/Library/Input Methods/JapaneseIM-KanaTyping.app/Contents/PlugIns/JapaneseIM-KanaTyping.appex/Contents/Resources/InfoPlist.loctable
+loginwind   585 patopina  txt       REG               1,16          4570 1152921500312205362 /System/Library/Input Methods/DictationIM.app/Contents/Resources/InfoPlist.loctable
+loginwind   585 patopina  txt       REG               1,16         21302 1152921500312206290 /System/Library/Input Methods/JapaneseIM-RomajiTyping.app/Contents/PlugIns/JapaneseIM-RomajiTyping.appex/Contents/Resources/InfoPlist.loctable
+loginwind   585 patopina  txt       REG               1,16         11549 1152921500312207332 /System/Library/Input Methods/TYIM.app/Contents/PlugIns/TYIM_Extension.appex/Contents/Resources/InfoPlist.loctable
+loginwind   585 patopina  txt       REG               1,16          5043 1152921500312207511 /System/Library/Input Methods/TamilIM.app/Contents/Resources/InfoPlist.loctable
+loginwind   585 patopina  txt       REG               1,16         31836 1152921500312207766 /System/Library/Input Methods/TransliterationIM.app/Contents/PlugIns/TransliterationIM_Extension.appex/Contents/Resources/InfoPlist.loctable
+loginwind   585 patopina  txt       REG               1,16         15872 1152921500312207140 /System/Library/Input Methods/TCIM.app/Contents/PlugIns/TCIM_Extension.appex/Contents/Resources/InfoPlist.loctable
+loginwind   585 patopina  txt       REG               1,16        186681            10323301 /private/var/db/analyticsd/events.allowlist
+loginwind   585 patopina    0r      CHR                3,2           0t0                 336 /dev/null
+loginwind   585 patopina    1u      CHR                3,2         0t343                 336 /dev/null
+loginwind   585 patopina    2u      CHR                3,2      0t224796                 336 /dev/null
+loginwind   585 patopina    3u     unix  0x248ef03d36fc6c6           0t0                     ->0xa39aa97a6c4e33d7
+loginwind   585 patopina    7r      REG               1,16       1251120 1152921500312346492 /System/Library/PrivateFrameworks/RenderBox.framework/Versions/A/Resources/default.metallib
+loginwind   585 patopina    8u      REG               1,16          4132             7341020 /private/var/folders/jj/kshx6fns0jd2nbcfpl0qvn4w0000gn/C/com.apple.loginwindow/com.apple.metal/16777235_403/functions.list
+loginwind   585 patopina    9u      REG               1,16        196608              370929 /private/var/folders/jj/kshx6fns0jd2nbcfpl0qvn4w0000gn/C/com.apple.loginwindow/com.apple.metal/16777235_403/functions.data
+loginwind   585 patopina   10u      REG               1,16          1276             7341027 /private/var/folders/jj/kshx6fns0jd2nbcfpl0qvn4w0000gn/C/com.apple.loginwindow/com.apple.metal/32024/libraries.list
+loginwind   585 patopina   11u      REG               1,16        196608              766108 /private/var/folders/jj/kshx6fns0jd2nbcfpl0qvn4w0000gn/C/com.apple.loginwindow/com.apple.metal/32024/libraries.data
+callservi   905 patopina  cwd       DIR               1,16           704                   2 /
+callservi   905 patopina  txt       REG               1,16      14999632 1152921500312460311 /System/Library/PrivateFrameworks/TelephonyUtilities.framework/callservicesd
+callservi   905 patopina  txt       REG               1,16         73840             8400197 /Library/Preferences/Logging/.plist-cache.Mge4C6lV
+callservi   905 patopina  txt       REG               1,16         32768             8404976 /private/var/db/mds/messages/501/se_SecurityMessages
+callservi   905 patopina  txt       REG               1,16         61220 1152921500312198088 /System/Library/Frameworks/Security.framework/Versions/A/Resources/SecDebugErrorMessages.strings
+callservi   905 patopina  txt       REG               1,16       2299152 1152921500312563341 /usr/lib/dyld
+callservi   905 patopina  txt       REG               1,16         92244 1152921500312275358 /System/Library/PrivateFrameworks/CorePhoneNumbers.framework/Versions/A/Resources/CorePhoneNumbers.ruleset
+callservi   905 patopina  txt       REG               1,16           110 1152921500312100234 /System/Library/CoreServices/SystemVersion.bundle/English.lproj/SystemVersion.strings
+callservi   905 patopina  txt       REG               1,16        248480 1152921500312563357 /usr/lib/libobjc-trampolines.dylib
+callservi   905 patopina  txt       REG               1,16          8384 1152921500312460157 /System/Library/PrivateFrameworks/TelephonyUtilities.framework/Versions/A/Resources/CallRecording.loctable
+callservi   905 patopina  txt       REG               1,16       1828652 1152921500312198090 /System/Library/Frameworks/Security.framework/Versions/A/Resources/SecErrorMessages.loctable
+callservi   905 patopina  txt       REG               1,16       1265872 1152921500312460167 /System/Library/PrivateFrameworks/TelephonyUtilities.framework/Versions/A/Resources/TelephonyUtilities.loctable
+callservi   905 patopina  txt       REG               1,16         24067 1152921500312460159 /System/Library/PrivateFrameworks/TelephonyUtilities.framework/Versions/A/Resources/CallTranslation.loctable
+callservi   905 patopina  txt       REG               1,16           701 1152921500311921137 /System/Library/Address Book Plug-Ins/LDAP.sourcebundle/Contents/Resources/InfoPlist.loctable
+callservi   905 patopina  txt       REG               1,16           985 1152921500311921190 /System/Library/Address Book Plug-Ins/LocalSource.sourcebundle/Contents/Resources/InfoPlist.loctable
+callservi   905 patopina  txt       REG               1,16           861 1152921500311921080 /System/Library/Address Book Plug-Ins/Exchange.sourcebundle/Contents/Resources/InfoPlist.loctable
+callservi   905 patopina  txt       REG               1,16          1721 1152921500311921025 /System/Library/Address Book Plug-Ins/DirectoryServices.sourcebundle/Contents/Resources/InfoPlist.loctable
+callservi   905 patopina  txt       REG               1,16          1408 1152921500311920967 /System/Library/Address Book Plug-Ins/CardDAVPlugin.sourcebundle/Contents/Resources/InfoPlist.loctable
+callservi   905 patopina  txt       REG               1,16         12685 1152921500312246452 /System/Library/PrivateFrameworks/AddressBookCore.framework/Versions/A/Resources/AB-NARWHAL.loctable
+callservi   905 patopina  txt       REG               1,16        173744 1152921500311921022 /System/Library/Address Book Plug-Ins/DirectoryServices.sourcebundle/Contents/MacOS/DirectoryServices
+callservi   905 patopina  txt       REG               1,16          1720 1152921500312246456 /System/Library/PrivateFrameworks/AddressBookCore.framework/Versions/A/Resources/ABLDAPStrings.loctable
+callservi   905 patopina  txt       REG               1,16        137024 1152921500311921187 /System/Library/Address Book Plug-Ins/LocalSource.sourcebundle/Contents/MacOS/LocalSource
+callservi   905 patopina  txt       REG               1,16        954386 1152921500312246460 /System/Library/PrivateFrameworks/AddressBookCore.framework/Versions/A/Resources/ABStrings.loctable
+callservi   905 patopina  txt       REG               1,16      34147264 1152921500312573805 /usr/share/icu/icudt76l.dat
+callservi   905 patopina  txt       REG               1,16        237747 1152921500312146599 /System/Library/Frameworks/Contacts.framework/Versions/A/Resources/Errors.loctable
+callservi   905 patopina  txt       REG               1,16         32768              287984 /Users/patopina/Library/Application Support/CallHistoryDB/CallHistory.storedata-shm
+callservi   905 patopina  txt       REG               1,16        229247 1152921500312318190 /System/Library/PrivateFrameworks/IMCore.framework/Versions/A/Resources/IMCoreLocalizable.loctable
+callservi   905 patopina  txt       REG               1,16        186681            10323301 /private/var/db/analyticsd/events.allowlist
+callservi   905 patopina  txt       REG               1,16       1554528 1152921500311920964 /System/Library/Address Book Plug-Ins/CardDAVPlugin.sourcebundle/Contents/MacOS/CardDAVPlugin
+callservi   905 patopina    0r      CHR                3,2           0t0                 336 /dev/null
+callservi   905 patopina    1u      CHR                3,2           0t0                 336 /dev/null
+callservi   905 patopina    2u      CHR                3,2       0t10915                 336 /dev/null
+callservi   905 patopina    3u      REG               1,16        249856              287922 /Users/patopina/Library/Application Support/CallHistoryDB/CallHistory.storedata
+callservi   905 patopina    4u      REG               1,16       2669792              287983 /Users/patopina/Library/Application Support/CallHistoryDB/CallHistory.storedata-wal
+callservi   905 patopina    5u     unix 0xab941593f015b7a4           0t0                     ->0xa39aa97a6c4e33d7
+callservi   905 patopina    6u      REG               1,16         32768              287984 /Users/patopina/Library/Application Support/CallHistoryDB/CallHistory.storedata-shm
+distnoted   910 patopina  cwd       DIR               1,16           704                   2 /
+distnoted   910 patopina  txt       REG               1,16        291616 1152921500312566036 /usr/sbin/distnoted
+distnoted   910 patopina  txt       REG               1,16         73840             8400197 /Library/Preferences/Logging/.plist-cache.Mge4C6lV
+distnoted   910 patopina  txt       REG               1,16       2299152 1152921500312563341 /usr/lib/dyld
+distnoted   910 patopina    0r      CHR                3,2           0t0                 336 /dev/null
+distnoted   910 patopina    1u      CHR                3,2           0t0                 336 /dev/null
+distnoted   910 patopina    2u      CHR                3,2         0t165                 336 /dev/null
+distnoted   910 patopina    3u     unix  0x8cc278aebe7df05           0t0                     ->0xa39aa97a6c4e33d7
+secd        939 patopina  cwd       DIR               1,16           704                   2 /
+secd        939 patopina  txt       REG               1,16       8708544 1152921500312565645 /usr/libexec/secd
+secd        939 patopina  txt       REG               1,16         73840             8400197 /Library/Preferences/Logging/.plist-cache.Mge4C6lV
+secd        939 patopina  txt       REG               1,16         32768              282773 /Users/patopina/Library/Keychains/D1C1BD37-18A8-5F38-B99E-4DC36DF746EA/keychain-2.db-shm
+secd        939 patopina  txt       REG               1,16         32768              282799 /private/var/protected/sfanalytics/8C659874-CEAE-4116-8AAB-63AD305F7527/ckks_analytics.db-shm
+secd        939 patopina  txt       REG               1,16           110 1152921500312100234 /System/Library/CoreServices/SystemVersion.bundle/English.lproj/SystemVersion.strings
+secd        939 patopina  txt       REG               1,16       2299152 1152921500312563341 /usr/lib/dyld
+secd        939 patopina  txt       REG               1,16         12480 1152921500312250792 /System/Library/PrivateFrameworks/AppleSystemInfo.framework/Versions/A/Resources/AppleSystemInfo.loctable
+secd        939 patopina  txt       REG               1,16         32768              298442 /private/var/protected/sfanalytics/8C659874-CEAE-4116-8AAB-63AD305F7527/sos_analytics.db-shm
+secd        939 patopina  txt       REG               1,16      34147264 1152921500312573805 /usr/share/icu/icudt76l.dat
+secd        939 patopina  txt       REG               1,16        186681            10323301 /private/var/db/analyticsd/events.allowlist
+secd        939 patopina    0r      CHR                3,2           0t0                 336 /dev/null
+secd        939 patopina    1u      CHR                3,2           0t0                 336 /dev/null
+secd        939 patopina    2u      CHR                3,2         0t175                 336 /dev/null
+secd        939 patopina    3u      REG               1,16      18706432              282748 /Users/patopina/Library/Keychains/D1C1BD37-18A8-5F38-B99E-4DC36DF746EA/keychain-2.db
+secd        939 patopina    4u      REG               1,16       3044712              282772 /Users/patopina/Library/Keychains/D1C1BD37-18A8-5F38-B99E-4DC36DF746EA/keychain-2.db-wal
+secd        939 patopina    5u      REG               1,16         32768              282773 /Users/patopina/Library/Keychains/D1C1BD37-18A8-5F38-B99E-4DC36DF746EA/keychain-2.db-shm
+secd        939 patopina    6r      REG               1,16      18706432              282748 /Users/patopina/Library/Keychains/D1C1BD37-18A8-5F38-B99E-4DC36DF746EA/keychain-2.db
+secd        939 patopina    7r      REG               1,16      18706432              282748 /Users/patopina/Library/Keychains/D1C1BD37-18A8-5F38-B99E-4DC36DF746EA/keychain-2.db
+secd        939 patopina    8r      REG               1,16       3044712              282772 /Users/patopina/Library/Keychains/D1C1BD37-18A8-5F38-B99E-4DC36DF746EA/keychain-2.db-wal
+secd        939 patopina    9r      REG               1,16       3044712              282772 /Users/patopina/Library/Keychains/D1C1BD37-18A8-5F38-B99E-4DC36DF746EA/keychain-2.db-wal
+secd        939 patopina   10   NPOLICY                                                      
+secd        939 patopina   11u      REG               1,16         98304              282795 /private/var/protected/sfanalytics/8C659874-CEAE-4116-8AAB-63AD305F7527/ckks_analytics.db
+secd        939 patopina   12u      REG               1,16        267832              282798 /private/var/protected/sfanalytics/8C659874-CEAE-4116-8AAB-63AD305F7527/ckks_analytics.db-wal
+secd        939 patopina   13u      REG               1,16         32768              282799 /private/var/protected/sfanalytics/8C659874-CEAE-4116-8AAB-63AD305F7527/ckks_analytics.db-shm
+secd        939 patopina   14u      REG               1,16          4096              298439 /private/var/protected/sfanalytics/8C659874-CEAE-4116-8AAB-63AD305F7527/sos_analytics.db
+secd        939 patopina   15u      REG               1,16        766352              298441 /private/var/protected/sfanalytics/8C659874-CEAE-4116-8AAB-63AD305F7527/sos_analytics.db-wal
+secd        939 patopina   16u      REG               1,16         32768              298442 /private/var/protected/sfanalytics/8C659874-CEAE-4116-8AAB-63AD305F7527/sos_analytics.db-shm
+secd        939 patopina   17r      REG               1,16      18706432              282748 /Users/patopina/Library/Keychains/D1C1BD37-18A8-5F38-B99E-4DC36DF746EA/keychain-2.db
+secd        939 patopina   18r      REG               1,16       3044712              282772 /Users/patopina/Library/Keychains/D1C1BD37-18A8-5F38-B99E-4DC36DF746EA/keychain-2.db-wal
+secd        939 patopina   19r      REG               1,16      18706432              282748 /Users/patopina/Library/Keychains/D1C1BD37-18A8-5F38-B99E-4DC36DF746EA/keychain-2.db
+secd        939 patopina   20r      REG               1,16       3044712              282772 /Users/patopina/Library/Keychains/D1C1BD37-18A8-5F38-B99E-4DC36DF746EA/keychain-2.db-wal
+secd        939 patopina   21r      REG               1,16      18706432              282748 /Users/patopina/Library/Keychains/D1C1BD37-18A8-5F38-B99E-4DC36DF746EA/keychain-2.db
+secd        939 patopina   22r      REG               1,16       3044712              282772 /Users/patopina/Library/Keychains/D1C1BD37-18A8-5F38-B99E-4DC36DF746EA/keychain-2.db-wal
+secd        939 patopina   23u     unix 0x9540950361b8496c           0t0                     ->0xa39aa97a6c4e33d7
+cfprefsd    940 patopina  cwd       DIR               1,16           704                   2 /
+cfprefsd    940 patopina  txt       REG               1,16        135792 1152921500312565988 /usr/sbin/cfprefsd
+cfprefsd    940 patopina  txt       REG               1,16         73840             8400197 /Library/Preferences/Logging/.plist-cache.Mge4C6lV
+cfprefsd    940 patopina  txt       REG               1,16       2299152 1152921500312563341 /usr/lib/dyld
+cfprefsd    940 patopina    0r      CHR                3,2           0t0                 336 /dev/null
+cfprefsd    940 patopina    1u      CHR                3,2           0t0                 336 /dev/null
+cfprefsd    940 patopina    2u      CHR                3,2           0t0                 336 /dev/null
+cfprefsd    940 patopina    3       DIR               1,16         11488              282381 /Users/patopina/Library/Preferences
+cfprefsd    940 patopina    4       DIR               1,16           192             7213933 /Users/patopina/Library/Containers/net.whatsapp.WhatsApp/Data/Library/Preferences
+UserEvent   941 patopina  cwd       DIR               1,16           704                   2 /
+UserEvent   941 patopina  txt       REG               1,16        178832 1152921500312564686 /usr/libexec/UserEventAgent
+UserEvent   941 patopina  txt       REG               1,16         73840             8400197 /Library/Preferences/Logging/.plist-cache.Mge4C6lV
+UserEvent   941 patopina  txt       REG               1,16        121568 1152921500312530469 /System/Library/UserEventPlugins/PrinterMonitor.plugin/Contents/MacOS/PrinterMonitor
+UserEvent   941 patopina  txt       REG               1,16        123280 1152921500312530327 /System/Library/UserEventPlugins/AppleHIDMouseAgent.plugin/Contents/MacOS/AppleHIDMouseAgent
+UserEvent   941 patopina  txt       REG               1,16        121232 1152921500312530338 /System/Library/UserEventPlugins/BluetoothUserAgent-Plugin.plugin/Contents/MacOS/BluetoothUserAgent-Plugin
+UserEvent   941 patopina  txt       REG               1,16        122448 1152921500312530349 /System/Library/UserEventPlugins/BonjourEvents.plugin/Contents/MacOS/BonjourEvents
+UserEvent   941 patopina  txt       REG               1,16        123968 1152921500312530360 /System/Library/UserEventPlugins/CaptiveUserAgent.plugin/Contents/MacOS/CaptiveUserAgent
+UserEvent   941 patopina  txt       REG               1,16        126304 1152921500312530371 /System/Library/UserEventPlugins/EAPOLMonitor.plugin/Contents/MacOS/EAPOLMonitor
+UserEvent   941 patopina  txt       REG               1,16        104320 1152921500312530425 /System/Library/UserEventPlugins/GSSNotificationForwarder.plugin/Contents/MacOS/GSSNotificationForwarder
+UserEvent   941 patopina  txt       REG               1,16        281856 1152921500312530621 /System/Library/UserEventPlugins/com.apple.cts.plugin/Contents/MacOS/com.apple.cts
+UserEvent   941 patopina  txt       REG               1,16        143504 1152921500312530479 /System/Library/UserEventPlugins/SCMonitor.plugin/Contents/MacOS/SCMonitor
+UserEvent   941 patopina  txt       REG               1,16       2299152 1152921500312563341 /usr/lib/dyld
+UserEvent   941 patopina  txt       REG               1,16        119280 1152921500312530533 /System/Library/UserEventPlugins/SystemPolicyEvents.plugin/Contents/MacOS/SystemPolicyEvents
+UserEvent   941 patopina  txt       REG               1,16        123552 1152921500312530589 /System/Library/UserEventPlugins/com.apple.alarm.plugin/Contents/MacOS/com.apple.alarm
+UserEvent   941 patopina  txt       REG               1,16        120800 1152921500312530600 /System/Library/UserEventPlugins/com.apple.bonjour.plugin/Contents/MacOS/com.apple.bonjour
+UserEvent   941 patopina  txt       REG               1,16        103776 1152921500312530611 /System/Library/UserEventPlugins/com.apple.cfnotification.plugin/Contents/MacOS/com.apple.cfnotification
+UserEvent   941 patopina  txt       REG               1,16        158112 1152921500312530652 /System/Library/UserEventPlugins/com.apple.fsevents.matching.plugin/Contents/MacOS/com.apple.fsevents.matching
+UserEvent   941 patopina  txt       REG               1,16        103248 1152921500312530632 /System/Library/UserEventPlugins/com.apple.diskarbitration.plugin/Contents/MacOS/com.apple.diskarbitration

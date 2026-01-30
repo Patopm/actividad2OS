@@ -162,7 +162,7 @@ generate_comparison() {
     echo ""
     printf "%-15s %15s %15s %15s\n" "Mode" "Avg Time (ms)" "Speedup" "Efficiency"
     printf "%-15s %15s %15s %15s\n" "───────────────" "───────────────" "───────────────" "───────────────"
-    printf "%-15s %15.3f %15s %15s\n" "Sequential" "$seq_time" "1.00x" "100%"
+    LC_NUMERIC=C printf "%-15s %15.3f %15s %15s\n" "Sequential" "$seq_time" "1.00x" "100%"
   } >"$report_file"
 
   # Print header to console
