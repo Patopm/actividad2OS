@@ -142,7 +142,7 @@ generate_comparison() {
   if [[ -f "$RESULTS_DIR/.seq_avg_time" ]]; then
     seq_time=$(cat "$RESULTS_DIR/.seq_avg_time")
     seq_time=${seq_time/,/.}
-    sec_time=$(echo $seq_time | tr -d '[:space:]')
+    sec_time=$(echo "$seq_time" | sed 's/[^0-9.]//g')
   else
     echo "Sequential benchmark results not found. Run 'benchmark.sh sequential' first."
     return 1
