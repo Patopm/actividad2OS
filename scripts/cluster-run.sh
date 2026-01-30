@@ -138,22 +138,25 @@ run_benchmarks() {
   # TCP distributed (2 workers)
   log_info "Running TCP distributed (3 nodes)..."
   for limit in "${limits[@]}"; do
-    for _ in $(seq 1 $iterations); do
-      # Start workers
-      "$BINARY" --worker --master-addr "127.0.0.1:$TCP_PORT" &>/dev/null &
-      pid1=$!
-      "$BINARY" --worker --master-addr "127.0.0.1:$TCP_PORT" &>/dev/null &
-      pid2=$!
-      sleep 0.5
+    for i in $(seq 1 $iterations); do
+      log_debug "  Iteration $i for limit $limit..."
 
-      # Run master and capture output
+      "$BINARY" --worker --master-addr "127.0.0.1:$TCP_PORT" >/dev/null 2>&1 &
+      w1_pid=$!
+      "$BINARY" --worker --master-addr "127.0.0.1:$TCP_PORT" >/dev/null 2>&1 &
+      w2_pid=$!
+
       result=$("$BINARY" --tcp --master-addr "127.0.0.1:$TCP_PORT" --workers 2 --limit "$limit" --csv 2>/dev/null)
-      echo "tcp,3,$limit,$(echo "$result" | cut -d',' -f3),$(echo "$result" | cut -d',' -f4)" >>"$output_file"
 
-      wait "$pid1" "$pid2" 2>/dev/null || true
+      IFS=',' read -r res_limit res_nodes res_time res_count <<<"$result"
+
+      echo "tcp,3,$limit,$res_time,$res_count" >>"$output_file"
+
+      # 4. Clean up: Ensure workers are dead before next iteration
+      kill $w1_pid $w2_pid 2>/dev/null || true
+      wait $w1_pid $w2_pid 2>/dev/null
     done
   done
-
   # MPI cluster (if running)
   if check_cluster; then
     log_info "Running MPI cluster (3 nodes)..."
