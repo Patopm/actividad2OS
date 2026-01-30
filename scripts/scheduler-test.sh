@@ -73,9 +73,11 @@ check_system() {
   uname -r
 
   echo ""
-  echo "CPU Scheduler:"
+  echo "CPU Scheduler Info:"
   if [[ -f /sys/block/sda/queue/scheduler ]]; then
-    cat /sys/block/sda/queue/scheduler 2>/dev/null || echo "N/A"
+    cat /sys/block/sda/queue/scheduler 2>/dev/null
+  else
+    echo "I/O Scheduler info not accessible in /sys"
   fi
 
   echo ""
@@ -87,12 +89,13 @@ check_system() {
   if command -v chrt &>/dev/null; then
     chrt --max
   else
-    echo "chrt not available"
+    log_warn "chrt not available. Install util-linux to test RT policies."
   fi
 
   echo ""
   echo "Current process scheduling:"
-  ps -o pid,ni,pri,policy,comm -p $$
+  # Try 'class' which is the standard for policy on many Linux ps versions
+  ps -o pid,ni,pri,class,comm -p $$ 2>/dev/null || ps -o pid,ni,pri,comm -p $$
 }
 
 # Run basic tests (no root required)
@@ -289,7 +292,7 @@ run_monitoring() {
   for _ in {1..10}; do
     if ps -p $pid >/dev/null 2>&1; then
       echo "--- $(date +%H:%M:%S.%N | cut -c1-12) ---"
-      ps -L -o pid,lwp,ni,pri,policy,stat,pcpu,comm -p $pid 2>/dev/null | head -10
+      ps -L -o pid,lwp,ni,pri,class,stat,pcpu,comm -p $pid 2>/dev/null | head -10
       echo ""
       sleep 0.5
     else
