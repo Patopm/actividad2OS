@@ -136,27 +136,34 @@ run_benchmarks() {
   done
 
   # TCP distributed (2 workers)
-  log_info "Running TCP distributed (3 nodes)..."
-  for limit in "${limits[@]}"; do
-    for i in $(seq 1 $iterations); do
+  # TCP distributed (2 workers)
+log_info "Running TCP distributed (3 nodes)..."
+for limit in "${limits[@]}"; do
+  for i in $(seq 1 $iterations); do
+    killall $(basename "$BINARY") 2>/dev/null || true
+    sleep 0.2
 
-      "$BINARY" --worker --master-addr "127.0.0.1:$TCP_PORT" >/dev/null 2>&1 &
-      w1_pid=$!
-      "$BINARY" --worker --master-addr "127.0.0.1:$TCP_PORT" >/dev/null 2>&1 &
-      w2_pid=$!
+    "$BINARY" --worker --master-addr "127.0.0.1:$TCP_PORT" --verbose >&2 &
+    w1_pid=$!
+    "$BINARY" --worker --master-addr "127.0.0.1:$TCP_PORT" --verbose >&2 &
+    w2_pid=$!
 
-      result=$("$BINARY" --tcp --master-addr "127.0.0.1:$TCP_PORT" --workers 2 --limit "$limit" --csv 2>/dev/null)
+    full_output=$("$BINARY" --tcp --master-addr "127.0.0.1:$TCP_PORT" \
+                  --workers 2 --limit "$limit" --csv 2>&1 | tee /dev/stderr)
 
-      IFS=',' read -r res_limit res_nodes res_time res_count <<<"$result"
+    csv_line=$(echo "$full_output" | grep -E '^[0-9]+,[0-9]+,[0-9.]+,[0-9]+')
 
-      echo "tcp,3,$limit,$res_time,$res_count" >>"$output_file"
+    if [[ -n "$csv_line" ]]; then
+      echo "tcp,3,$limit,$(echo "$csv_line" | cut -d',' -f3),$(echo "$csv_line" | cut -d',' -f4)" >> "$output_file"
+      log_info "Success: $(echo "$csv_line" | cut -d',' -f3)ms"
+    else
+      log_error "Iteration failed - Master did not return CSV data"
+    fi
 
-      # 4. Clean up: Ensure workers are dead before next iteration
-      kill $w1_pid $w2_pid 2>/dev/null || true
-      wait $w1_pid $w2_pid 2>/dev/null
-    done
+    kill $w1_pid $w2_pid 2>/dev/null || true
+    wait $w1_pid $w2_pid 2>/dev/null
   done
-  # MPI cluster (if running)
+done# MPI cluster (if running)
   if check_cluster; then
     log_info "Running MPI cluster (3 nodes)..."
     for limit in "${limits[@]}"; do

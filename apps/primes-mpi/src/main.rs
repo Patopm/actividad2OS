@@ -373,44 +373,58 @@ mod tcp_impl {
     pub fn run_worker(args: &Args) -> Result<(), String> {
         println!("Connecting to master at {}...", args.master_addr);
 
-        let mut stream = TcpStream::connect(&args.master_addr)
-            .map_err(|e| format!("Connection failed: {}", e))?;
+        let mut stream = None;
+        let start_time = Instant::now();
+        let timeout = std::time::Duration::from_secs(10);
+
+        // RETRY LOOP: Keep trying to connect until Master is ready
+        while start_time.elapsed() < timeout {
+            match TcpStream::connect(&args.master_addr) {
+                Ok(s) => {
+                    stream = Some(s);
+                    break;
+                }
+                Err(_) => {
+                    std::thread::sleep(std::time::Duration::from_millis(200));
+                }
+            }
+        }
+
+        let mut stream = stream.ok_or_else(|| 
+            format!("Connection failed: Could not reach master at {} after 10s", args.master_addr)
+        )?;
+
+        // Add timeouts so it doesn't hang forever if the master crashes
+        stream.set_read_timeout(Some(std::time::Duration::from_secs(30))).ok();
+        stream.set_write_timeout(Some(std::time::Duration::from_secs(30))).ok();
 
         println!("Connected to master");
 
         // Receive work
         let mut len_buf = [0u8; 4];
-        stream
-            .read_exact(&mut len_buf)
-            .map_err(|e| format!("Read failed: {}", e))?;
+        stream.read_exact(&mut len_buf).map_err(|e| format!("Read len failed: {}", e))?;
         let len = u32::from_le_bytes(len_buf) as usize;
 
         let mut data = vec![0u8; len];
-        stream
-            .read_exact(&mut data)
-            .map_err(|e| format!("Read failed: {}", e))?;
+        stream.read_exact(&mut data).map_err(|e| format!("Read data failed: {}", e))?;
 
         let (low, high, base_primes) = deserialize_work(&data);
 
         if args.verbose {
-            println!("Received work: [{}, {}] with {} base primes", low, high, base_primes.len());
+            println!("Received work: [{}, {}]", low, high);
         }
 
         // Do the work
         let primes = sieve_segment(low, high, &base_primes);
         let count = primes.len();
 
-        if args.verbose {
-            println!("Found {} primes", count);
-        }
-
         // Send result
-        stream
-            .write_all(&(count as u32).to_le_bytes())
-            .map_err(|e| format!("Write failed: {}", e))?;
-
-        println!("Result sent to master");
-
+        stream.write_all(&(count as u32).to_le_bytes()).map_err(|e| format!("Write result failed: {}", e))?;
+    
+        // Explicitly flush to ensure data is sent before worker exits
+        stream.flush().ok();
+    
+        println!("Result sent: {} primes found", count);
         Ok(())
     }
 }
